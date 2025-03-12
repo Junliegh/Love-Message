@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            flex-direction: column;
+            text-align: center;
+        }
+        canvas {
+            background-color: white;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 24px;
+            color: red;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="flowerCanvas" width="300" height="300"></canvas>
+    <h1>I Love You</h1>
+    
+    <script>
+        const canvas = document.getElementById("flowerCanvas");
+        const ctx = canvas.getContext("2d");
+        
+        function drawHeart(x, y, size, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.bezierCurveTo(x - size, y - size, x - size * 2, y + size / 2, x, y + size);
+            ctx.bezierCurveTo(x + size * 2, y + size / 2, x + size, y - size, x, y);
+            ctx.fill();
+        }
+        
+        function drawStem() {
+            ctx.strokeStyle = "green";
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(150, 200);
+            ctx.lineTo(150, 280);
+            ctx.stroke();
+        }
+        
+        function drawLeaves() {
+            ctx.fillStyle = "green";
+            ctx.beginPath();
+            ctx.arc(130, 230, 20, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(170, 250, 20, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        function drawFlower() {
+            drawHeart(150, 100, 30, "red");
+            drawHeart(130, 80, 30, "red");
+            drawHeart(170, 80, 30, "red");
+            drawHeart(150, 60, 30, "red");
+            drawStem();
+            drawLeaves();
+        }
+        
+        drawFlower();
+    </script>
+</body>
+</html>
